@@ -3,17 +3,20 @@
 #define MAXBITS 31
 #define GETNTHBIT(x, n) ((x) & (1 << n))
 #define CLEARNTHBIT(x, n) ((x) &= ~(1 << n))
+#define ISFULL(x) (((x) & ((x) + 1)) == 0)
 
 int nrbits(int a, int b, int n)
 {
 	if (n == 0)
 		return b;
 	
-	if (GETNTHBIT(a, n) == 0 && GETNTHBIT(b, n) == 0)
+	if (GETNTHBIT(a, n) == 0 && 0 == GETNTHBIT(b, n))
 		return nrbits(a, b, n - 1);
 	
 	if (GETNTHBIT(a, n) == 0 && 0 != GETNTHBIT(b, n))
 	{
+		if (ISFULL(b))
+			return n * 2 ^ (n - 1);
 		int y = (1 << n);
 		int x = y - 1;
 		return nrbits(a, x, n) + nrbits(y, b, n);
