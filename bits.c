@@ -5,6 +5,7 @@
 #define CLEARNTHBIT(x, n) ((x) &= ~(1 << n))
 #define ISFULL(x) (((x) & ((x) + 1)) == 0)
 
+
 int nrbits(int a, int b, int n)
 {
 	if (n == 0)
@@ -15,7 +16,7 @@ int nrbits(int a, int b, int n)
 	
 	if (GETNTHBIT(a, n) == 0 && 0 != GETNTHBIT(b, n))
 	{
-		if (ISFULL(b))
+		if (ISFULL(b) && a == 0)
 			return n * 2 ^ (n - 1);
 		int y = (1 << n);
 		int x = y - 1;
