@@ -6,7 +6,7 @@
 #define ISFULL(x) (((x) & ((x) + 1)) == 0)
 
 
-int nrbits(int a, int b, int n)
+long long nrbits(int a, int b, int n)
 {
 	if (n == 0)
 		return b;
@@ -17,7 +17,7 @@ int nrbits(int a, int b, int n)
 	if (GETNTHBIT(a, n) == 0 && 0 != GETNTHBIT(b, n))
 	{
 		if (ISFULL(b) && a == 0)
-			return n * 2 ^ (n - 1);
+			return 1ll * n * 2 ^ (n - 1);
 		int y = (1 << n);
 		int x = y - 1;
 		return nrbits(a, x, n) + nrbits(y, b, n);
@@ -31,7 +31,7 @@ int nrbits(int a, int b, int n)
 	}
 }
 
-int get_nr_set(int a, int b)
+long long get_nr_set(int a, int b)
 {
 	if (a < 0 && b >= 0)
 		return nrbits(a, -1, MAXBITS) + nrbits(0, b, MAXBITS);
@@ -44,7 +44,8 @@ int main()
 	int nr_test = 0;
 	scanf("%d", &nr_test);
 
-	int a, b, ret, i;
+	int a, b, i;
+	long long ret;
 	for (i = 0; i < nr_test; i++) {
 		scanf("%d %d", &a, &b);
 		ret = get_nr_set(a, b);
