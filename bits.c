@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#define MAXBITS 32
+#define MAXBITS 31
 
 int nrbits(char *a, char *b, int n)
 {
