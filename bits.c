@@ -45,9 +45,10 @@ int main()
 	scanf("%d", &nr_test);
 
 	int a, b, ret, i;
-	for (i = 0; i < nr_test; i++)
+	for (i = 0; i < nr_test; i++) {
 		scanf("%d %d", &a, &b);
 		ret = get_nr_set(a, b);
 		printf("%d\n", ret);
+	}
     return 0;
 }
