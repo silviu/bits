@@ -41,11 +41,13 @@ int get_nr_set(int a, int b)
 
 int main()
 {
-	int a = -3;
-	int b = 0;
+	int nr_test = 0;
+	scanf("%d", &nr_test);
 
-	int ret = get_nr_set(a, b);
-
-	printf("nr 1's = %d\n", ret);
+	int a, b, ret, i;
+	for (i = 0; i < nr_test; i++)
+		scanf("%d %d", &a, &b);
+		ret = get_nr_set(a, b);
+		printf("%d\n", ret);
     return 0;
 }
