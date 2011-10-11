@@ -1,25 +1,30 @@
 #include <stdio.h>
 
 #define MAXBITS 31
-#define NTHBIT(x, n) ((x) & (1 << n))
+#define GETNTHBIT(x, n) ((x) & (1 << n))
+#define CLEARNTHBIT(x, n) ((x) & ~(1 << n))
 
 int nrbits(int a, int b, int n)
 {
 	if (n == 0)
 		return 0;
 	
-	if (NTHBIT(a, n) == 0 && NTHBIT(b, n) == 0)
+	if (GETNTHBIT(a, n) == 0 && GETNTHBIT(b, n) == 0)
 		return nrbits(a, b, n - 1);
 	
-	if (NTHBIT(a, n) == 0 && 0 != NTHBIT(b, n))
+	if (GETNTHBIT(a, n) == 0 && 0 != GETNTHBIT(b, n))
 	{
 		int y = (1 << n);
 		int x = y - 1;
 		return nrbits(a, x, n) + nrbits(b, y, n);
 	}
 
-	if (NTHBIT(a, n) != 0 && 0 != NTHBIT(b, n))
+	if (GETNTHBIT(a, n) != 0 && 0 != GETNTHBIT(b, n))
+	{
+		CLEARNTHBIT(a, n);
+		CLEARNTHBIT(b, n);
 		return (b - a + 1) + nrbits(a, b, n - 1);
+	}
 }
 
 int main()
