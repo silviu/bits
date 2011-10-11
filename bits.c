@@ -16,7 +16,7 @@ int nrbits(int a, int b, int n)
 	{
 		int y = (1 << n);
 		int x = y - 1;
-		return nrbits(a, x, n) + nrbits(b, y, n);
+		return nrbits(a, x, n) + nrbits(y, b, n);
 	}
 
 	if (GETNTHBIT(a, n) != 0 && 0 != GETNTHBIT(b, n))
@@ -27,11 +27,21 @@ int nrbits(int a, int b, int n)
 	}
 }
 
+int get_nr_set(int a, int b)
+{
+	if (a < 0 && b >= 0)
+		return nrbits(a, -1, MAXBITS) + nrbits(0, b, MAXBITS);
+	else
+		return nrbits(a, b, MAXBITS);
+}
+
 int main()
 {
-	int a = 1;
-	int b = 3;
-	int ret = nrbits(a, b, MAXBITS);
+	int a = -3;
+	int b = 0;
+
+	int ret = get_nr_set(a, b);
+
 	printf("nr 1's = %d\n", ret);
     return 0;
 }
