@@ -2,12 +2,12 @@
 
 #define MAXBITS 31
 #define GETNTHBIT(x, n) ((x) & (1 << n))
-#define CLEARNTHBIT(x, n) ((x) & ~(1 << n))
+#define CLEARNTHBIT(x, n) ((x) &= ~(1 << n))
 
 int nrbits(int a, int b, int n)
 {
 	if (n == 0)
-		return 0;
+		return b;
 	
 	if (GETNTHBIT(a, n) == 0 && GETNTHBIT(b, n) == 0)
 		return nrbits(a, b, n - 1);
